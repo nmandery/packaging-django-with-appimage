@@ -1,0 +1,27 @@
+app: helloworld
+
+ingredients:
+  dist: bionic
+  sources: 
+    - deb http://us.archive.ubuntu.com/ubuntu/ bionic bionic-updates bionic-security main universe
+    - deb http://us.archive.ubuntu.com/ubuntu/ bionic-updates main universe
+    - deb http://us.archive.ubuntu.com/ubuntu/ bionic-security main universe
+  packages:
+    - python3-pip
+
+script:
+  - env
+  - cp -r ../../../app/helloworld ./usr/share/helloworld
+  - cp ../../../app/logo.png . 
+  - ./usr/bin/pip3 install -r ../../../app/requirements.txt -t usr/lib/python3/dist-packages/ --system
+  - cat > usr/share/applications/helloworld.desktop <<\EOF
+  - [Desktop Entry]
+  - Type=Application
+  - Icon=logo
+  - Name=helloworld
+  - Exec=python3 ./share/helloworld/manage.py %F
+  - Terminal=true
+  - Categories=Application;
+  - Keywords=Python;
+  - EOF
+  - cp usr/share/applications/helloworld.desktop .
