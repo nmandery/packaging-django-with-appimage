@@ -19,7 +19,7 @@ script:
   - Type=Application
   - Icon=logo
   - Name=helloworld
-  - Exec=python3 ./share/helloworld/manage.py %F
+  - Exec=./usr/bin/python3 -s ./share/helloworld/manage.py %F
   - Terminal=true
   - Categories=Application;
   - Keywords=Python;
